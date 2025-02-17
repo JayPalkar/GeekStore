@@ -23,7 +23,7 @@ const paymentSchema = mongoose.Schema(
     },
   },
   {
-    timestamps,
+    timestamps: true,
   }
 );
 
