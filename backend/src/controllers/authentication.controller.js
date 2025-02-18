@@ -61,7 +61,7 @@ export const login = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const user = await user.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "Invalid Credentials" });
     }
@@ -85,4 +85,12 @@ export const login = async (req, res) => {
   }
 };
 
-export const logout = async (req, res) => {};
+export const logout = async (req, res) => {
+  try {
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({ message: "logged out successfully" });
+  } catch (error) {
+    console.log("Error in login controller", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
