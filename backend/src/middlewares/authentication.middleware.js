@@ -4,13 +4,11 @@ import User from "../models/user.model.js";
 export const protectRoute = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
-    console.log("after line 6");
     if (!token) {
       return res
         .status(401)
         .json({ message: "Unauthorized - No Token Provided" });
     }
-
     const decode = jwt.verify(token, process.env.JWT_SECRET);
 
     if (!decode) {
@@ -22,7 +20,6 @@ export const protectRoute = async (req, res, next) => {
       return res.status(404).json({ message: "User Not Found" });
     }
     req.user = user;
-
     next();
   } catch (error) {
     console.log("Error in protectRoute middleware: ", error.message);
