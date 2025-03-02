@@ -74,5 +74,29 @@ export const updateUserAddress = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-export const becomeASeller = async (req, res) => {};
+export const becomeASeller = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const updateFields = { role: "seller" };
+
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(userId, updateFields, {
+      new: true,
+    });
+    res
+      .status(200)
+      .json({
+        message: "User role successfully changed to seller",
+        user: updatedUser,
+      });
+  } catch (error) {
+    console.error("Error in becomeASeller controller:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 export const deleteUserProfile = async (req, res) => {};
