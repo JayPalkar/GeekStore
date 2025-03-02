@@ -88,15 +88,28 @@ export const becomeASeller = async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(userId, updateFields, {
       new: true,
     });
-    res
-      .status(200)
-      .json({
-        message: "User role successfully changed to seller",
-        user: updatedUser,
-      });
+    res.status(200).json({
+      message: "User role successfully changed to seller",
+      user: updatedUser,
+    });
   } catch (error) {
     console.error("Error in becomeASeller controller:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-export const deleteUserProfile = async (req, res) => {};
+export const deleteUserProfile = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User Not Found" });
+    }
+    res.cookie("jwt", "", { maxAge: 0 });
+    await User.findByIdAndDelete(userId);
+    return res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error in deleteUser controller:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
