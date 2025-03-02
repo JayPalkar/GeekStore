@@ -38,6 +38,41 @@ export const addUserAddress = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-export const updateUserAddress = async (req, res) => {};
+export const updateUserAddress = async (req, res) => {
+  try {
+    const { addressId } = req.params;
+    const { address: newAddress } = req.body;
+
+    if (!addressId || !newAddress) {
+      return res
+        .status(400)
+        .json({ message: "AddressId and new address details are required" });
+    }
+
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const addressIndex = user.address.findIndex(
+      (addr) => addr._id.toString() === addressId
+    );
+    if (addressIndex === -1) {
+      return res.status(404).json({ message: "Address not found" });
+    }
+
+    Object.assign(user.address[addressIndex], newAddress);
+
+    await user.save();
+    return res.status(200).json({
+      message: "Address updated successfully",
+      address: user.address,
+    });
+  } catch (error) {
+    console.error("Error in updateUserAddress controller:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 export const becomeASeller = async (req, res) => {};
 export const deleteUserProfile = async (req, res) => {};
