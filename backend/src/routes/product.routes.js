@@ -1,5 +1,5 @@
 import express from "express";
-import { protectRoute } from "../middlewares/authentication.middleware";
+import { protectRoute } from "../middlewares/authentication.middleware.js";
 import {
   createProduct,
   deleteAProduct,
@@ -7,7 +7,7 @@ import {
   getMyProducts,
   getSingleProduct,
   updateAProduct,
-} from "../controllers/product.controller";
+} from "../controllers/product.controller.js";
 
 const router = express.Router();
 
