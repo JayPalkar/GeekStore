@@ -11,10 +11,10 @@ import {
 
 const router = express.Router();
 
+router.post("/create-product", protectRoute, createProduct);
 router.get("/", getAllProducts);
 router.get("/:productId", getSingleProduct);
 router.get("/my-products", protectRoute, getMyProducts);
-router.post("/create-product", protectRoute, createProduct);
 router.put("/my-products/:productId", protectRoute, updateAProduct);
 router.delete("/my-products/:productId", protectRoute, deleteAProduct);
 
