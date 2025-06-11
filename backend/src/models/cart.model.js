@@ -31,6 +31,6 @@ const cartSchema = mongoose.Schema(
   }
 );
 
-const Cart = mongoose.Model("Cart", cartSchema);
+const Cart = mongoose.model("Cart", cartSchema);
 
 export default Cart;
