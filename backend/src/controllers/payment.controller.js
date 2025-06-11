@@ -24,7 +24,7 @@ export const initiatePayment = async (req, res) => {
 export const verifyPaymentStatus = async (req, res) => {
   try {
     const { orderId } = req.params;
-    const paymentStatus = await Payment.findById(orderId).select(status);
+    const paymentStatus = await Payment.findById({ orderId }).select(status);
     if (!paymentStatus) {
       return res
         .status(404)
