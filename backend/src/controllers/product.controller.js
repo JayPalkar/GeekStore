@@ -76,7 +76,7 @@ export const getMyProducts = async (req, res) => {
     const user = await User.findById(loggedInUser).select("role");
 
     if (!user || user.role !== "seller") {
-      res.status(404).json({
+      return res.status(404).json({
         message:
           "You are not a seller Update your profile to create and view your products",
       });
@@ -85,7 +85,7 @@ export const getMyProducts = async (req, res) => {
     const myProducts = await Product.find({ sellerId: loggedInUser });
 
     if (myProducts.length === 0) {
-      res
+      return res
         .status(404)
         .json({ message: "No Products Found, Try creating a new product" });
     }
