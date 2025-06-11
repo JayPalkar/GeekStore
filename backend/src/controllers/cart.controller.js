@@ -26,7 +26,7 @@ export const addItemToCart = async (req, res) => {
         message: "Missing required product details: productId or Quantity",
       });
     }
-    const cart = await Cart.findById(id);
+    const cart = await Cart.findById({ userId: id });
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
