@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import { connectToDB } from "./config/db.js";
 import authenticationRoutes from "./routes/authentication.routes.js";
 import productRoutes from "./routes/product.routes.js";
+import cartRouter from "./routes/cart.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
 import userRoutes from "./routes/user.routes.js";
 
@@ -20,6 +21,7 @@ app.use("/api/auth", authenticationRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/car", cartRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
