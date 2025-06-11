@@ -6,6 +6,7 @@ import {
   getUserOrders,
   placeOrder,
   trackOrder,
+  updateOrderStatus,
 } from "../controllers/order.controller.js";
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.get("/", protectRoute, getUserOrders);
 router.get("/:orderId", protectRoute, getSingleOrder);
 router.put("/:orderId/cancel", protectRoute, cancelOrder);
 router.get("/:orderId/tracking", protectRoute, trackOrder);
+router.put("/:orderId/status", protectRoute, updateOrderStatus);
 
 export default router;
