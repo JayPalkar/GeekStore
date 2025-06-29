@@ -10,20 +10,11 @@ export const createProduct = async (req, res) => {
       imageURL,
       price,
       stock,
-      sellerId,
       categoryId,
       stateOfProduct,
     } = req.body;
 
-    if (
-      !name ||
-      !description ||
-      !imageURL ||
-      !price ||
-      !stock ||
-      !sellerId ||
-      !categoryId
-    ) {
+    if (!name || !description || !imageURL || !price || !stock || !categoryId) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
@@ -34,7 +25,7 @@ export const createProduct = async (req, res) => {
       price,
       stock,
       averageRating: 0,
-      sellerId,
+      sellerId: req.user._id,
       categoryId,
       stateOfProduct,
     });
