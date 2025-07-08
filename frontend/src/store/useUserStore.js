@@ -37,7 +37,7 @@ export const useUserStore = create((set) => ({
     set({ isUpdatingUser: true });
     try {
       const res = await axiosInstance.put(`/user/address/${addressId}`, data);
-      toast.success(res.message);
+      toast.success(res.data.message);
     } catch (error) {
       toast.error(error.data.response.message);
     } finally {
@@ -48,7 +48,8 @@ export const useUserStore = create((set) => ({
   becomeASeller: async () => {
     set({ isUpdatingUser: true });
     try {
-      await axiosInstance.put("/user/become-a-seller");
+      const res = await axiosInstance.put("/user/become-a-seller");
+      set({ userProfile: res.data.user });
       toast.success(
         "Congratulations, you are officially a seller at GeekStore"
       );
@@ -68,7 +69,7 @@ export const useUserStore = create((set) => ({
     } catch (error) {
       toast.error(error.data.response.message);
     } finally {
-      set({ isUpdatingUser: false });
+      set({ isDeletingUser: false });
     }
   },
 }));
