@@ -1,4 +1,5 @@
 import Review from "../models/review.model.js";
+import { updateAverageRating } from "../utils/updateAverageRaitng.js";
 
 export const AddReview = async (req, res) => {
   try {
@@ -14,6 +15,7 @@ export const AddReview = async (req, res) => {
     });
 
     const createdReview = await newReview.save();
+    await updateAverageRating(productId);
     res
       .status(200)
       .json({ message: "Review posted successfully", createdReview });
@@ -65,6 +67,7 @@ export const updateAReview = async (req, res) => {
     if (!updatedReview) {
       return res.status(404).json({ message: "Review not found" });
     }
+    await updateAverageRating(updatedReview.productId);
     res.status(200).json(updatedReview);
   } catch (error) {
     console.log("Error in updateAReview controller", error.message);
@@ -75,6 +78,7 @@ export const deleteAReview = async (req, res) => {
   try {
     const { reviewId } = req.params;
     const deletedReview = await Review.findByIdAndDelete(reviewId);
+    await updateAverageRating(deletedReview.productId);
     res.status(200).json({ message: "Review Deleted Successfully" });
   } catch {
     console.log("Error in deleteAReview controller", error.message);

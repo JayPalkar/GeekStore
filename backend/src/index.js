@@ -24,7 +24,7 @@ app.use("/api/auth", authenticationRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use("/api/car", cartRouter);
+app.use("/api/cart", cartRouter);
 app.use("/api/orders", orderRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/reviews", reviewRoutes);
