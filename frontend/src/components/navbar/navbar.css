@@ -1,0 +1,39 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.logoHeader {
+  font-size: 2rem;
+  font-family: "Bruno Ace SC";
+  color: var(--primary);
+}
+
+.navButtons {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.navButtons > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  gap: 1.3rem;
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.3rem;
+  font-family: "Georama";
+  cursor: pointer;
+}
+
+.buttonIcon {
+  color: var(--primary);
+}
