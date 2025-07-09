@@ -1,5 +1,5 @@
-import Product from "../models/product.model";
-import Review from "../models/review.model";
+import Product from "../models/product.model.js";
+import Review from "../models/review.model.js";
 
 export const updateAverageRating = async (productId) => {
   const reviews = await Review.find({ productId });
