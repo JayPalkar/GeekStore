@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { Eye, EyeClosed } from "lucide-react";
 import { useAuthenticationStore } from "../../store/useAuthenticationStore";
@@ -10,12 +10,14 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const { login, isLoggingIn } = useAuthenticationStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     login(formData);
+    navigate(-1);
   };
 
   return (
