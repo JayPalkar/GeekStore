@@ -51,3 +51,9 @@
 .addressBlock:hover .editOverlay {
   opacity: 1;
 }
+
+.modalContianer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
