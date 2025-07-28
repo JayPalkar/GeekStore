@@ -9,6 +9,7 @@ import Navbar from "./components/navbar/Navbar";
 import { useAuthenticationStore } from "./store/useAuthenticationStore";
 import { useEffect } from "react";
 import ProfilePage from "./pages/profile/profilePage";
+import Address from "./pages/address/address";
 
 const App = () => {
   const { checkAuthentication, isCheckingAuth } = useAuthenticationStore();
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/address" element={<Address />} />
       </Routes>
       <Toaster />
     </main>

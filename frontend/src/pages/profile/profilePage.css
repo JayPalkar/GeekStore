@@ -1,0 +1,61 @@
+.accountContainer {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.accountHeader {
+  font-family: "Roboto Slab";
+  font-size: 3rem;
+  color: var(--text);
+}
+
+.accountButtonsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.accountButton {
+  padding: 0rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: transparent;
+  border: 2px solid var(--border);
+  border-radius: 2rem;
+  font-family: "Georama";
+  font-size: 2rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: ease-in 200ms;
+}
+
+.accountButton:hover {
+  transform: translateY(-5px);
+}
+
+.accountButton:nth-child(1):hover {
+  border: 2px dashed #d5b475;
+}
+.accountButton:nth-child(2):hover {
+  border: 2px dashed #d91c55;
+}
+.accountButton:nth-child(3):hover {
+  border: 2px dashed #69be7f;
+}
+.accountButton:nth-child(4):hover {
+  border: 2px dashed var(--primary);
+}
+
+.buttonImageContainer {
+  width: 10rem;
+  height: auto;
+}
+
+.buttonImageContainer > img {
+  width: 100%;
+  height: 100%;
+}
