@@ -3,20 +3,34 @@ import "./addressModal.css";
 import { X } from "lucide-react";
 import { useUserStore } from "../../../store/useUserStore";
 
-const AddressModal = ({ closeModal }) => {
-  const [addressData, setAddressData] = useState({
-    street: "",
-    city: "",
-    state: "",
-    country: "",
-    zip: "",
-  });
+const AddressModal = ({ closeModal, existingAddress, onAddressChange }) => {
+  const [addressData, setAddressData] = useState(
+    existingAddress || {
+      street: "",
+      city: "",
+      state: "",
+      country: "",
+      zip: "",
+    }
+  );
 
-  const { addUserAddress, isUpdatingUser } = useUserStore();
+  const { addUserAddress, updateUserAddress, isUpdatingUser } = useUserStore();
 
-  const addNewAddress = () => {
-    addUserAddress({ address: addressData });
-    closeModal();
+  const handleSubmit = async () => {
+    if (existingAddress?._id) {
+      const updated = await updateUserAddress(
+        { address: addressData },
+        existingAddress._id
+      );
+      if (updated) {
+        onAddressChange(updated.address, true);
+      }
+    } else {
+      const added = await addUserAddress({ address: addressData });
+      if (added) {
+        onAddressChange(added.address, false);
+      }
+    }
   };
 
   return (
@@ -80,8 +94,14 @@ const AddressModal = ({ closeModal }) => {
         onInput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)"
       />
 
-      <button onClick={addNewAddress} className="submitAddressFormButton">
-        {isUpdatingUser ? "Adding Address..." : "Add Address"}
+      <button onClick={handleSubmit} className="submitAddressFormButton">
+        {isUpdatingUser
+          ? existingAddress
+            ? "Updating Address..."
+            : "Adding Address..."
+          : existingAddress
+          ? "Update Address"
+          : "Add Address"}
       </button>
     </div>
   );

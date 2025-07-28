@@ -1,7 +1,7 @@
 import "../../pages/address/address.css";
 import { Pencil } from "lucide-react";
 
-const AddressBlock = ({ address }) => {
+const AddressBlock = ({ address, onEdit }) => {
   return (
     <>
       <button
@@ -18,9 +18,15 @@ const AddressBlock = ({ address }) => {
         <p>
           {address.country}, {address.zip}
         </p>
-        <div className="editOverlay">
+        <button
+          className="editOverlay"
+          onClick={(e) => {
+            e.preventDefault();
+            onEdit(address);
+          }}
+        >
           <Pencil />
-        </div>
+        </button>
       </button>
     </>
   );
