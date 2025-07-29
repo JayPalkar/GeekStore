@@ -12,6 +12,7 @@ import paymentRoutes from "./routes/payment.routes.js";
 import reviewRoutes from "./routes/review.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import orderRoutes from "./routes/order.routes.js";
+import imageRoutes from "./routes/images.routes.js";
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use("/api/cart", cartRouter);
 app.use("/api/orders", orderRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/images", imageRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

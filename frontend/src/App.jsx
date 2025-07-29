@@ -10,6 +10,8 @@ import { useAuthenticationStore } from "./store/useAuthenticationStore";
 import { useEffect } from "react";
 import ProfilePage from "./pages/profile/profilePage";
 import Address from "./pages/address/address";
+import MyProducts from "./pages/myProducts/myProducts";
+import CreateProduct from "./pages/myProducts/CreateProduct";
 
 const App = () => {
   const { checkAuthentication, isCheckingAuth } = useAuthenticationStore();
@@ -34,6 +36,8 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/address" element={<Address />} />
+        <Route path="/my-products" element={<MyProducts />} />
+        <Route path="create-product" element={<CreateProduct />} />
       </Routes>
       <Toaster />
     </main>

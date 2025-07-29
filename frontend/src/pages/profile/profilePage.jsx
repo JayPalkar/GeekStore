@@ -36,24 +36,27 @@ const ProfilePage = () => {
           </span>{" "}
           Your Addresses
         </button>
-        <button className="accountButton">
-          {authUser ? (
-            <>
-              <span className="buttonImageContainer">
-                <img src={product} alt="" />
-              </span>{" "}
-              Add New Product
-            </>
-          ) : (
-            <>
-              {" "}
-              <span className="buttonImageContainer">
-                <img src={seller} alt="" />
-              </span>{" "}
-              Become A Seller
-            </>
-          )}
-        </button>
+        {authUser.role === "seller" ? (
+          <button
+            onClick={() => {
+              navigate("/my-products");
+            }}
+            className="accountButton"
+          >
+            <span className="buttonImageContainer">
+              <img src={product} alt="" />
+            </span>{" "}
+            Your Product
+          </button>
+        ) : (
+          <button className="accountButton">
+            {" "}
+            <span className="buttonImageContainer">
+              <img src={seller} alt="" />
+            </span>{" "}
+            Become A Seller
+          </button>
+        )}
         <button className="accountButton">
           {" "}
           <span className="buttonImageContainer">
